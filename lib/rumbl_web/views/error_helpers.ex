@@ -1,4 +1,4 @@
-defmodule Rumbl.ErrorHelpers do
+defmodule RumblWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """

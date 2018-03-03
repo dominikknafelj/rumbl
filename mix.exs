@@ -19,7 +19,7 @@ defmodule Rumbl.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Rumbl, []},
+      mod: {Rumbl.Application, []},
       extra_applications: [:logger, :comeonin]
     ]
   end

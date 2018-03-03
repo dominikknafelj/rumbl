@@ -1,12 +1,12 @@
-defmodule Rumbl.Web do
+defmodule RumblWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use Rumbl.Web, :controller
-      use Rumbl.Web, :view
+      use RumblWeb, :controller
+      use RumblWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -17,32 +17,19 @@ defmodule Rumbl.Web do
   and import those modules here.
   """
 
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   def controller do
     quote do
-      use Phoenix.Controller
-
-      alias Rumbl.Repo
-      import Ecto
-      import Ecto.Query
-
-      import Rumbl.Router.Helpers
-      import Rumbl.Gettext
+      use Phoenix.Controller, namespace: RumblWeb
+      import Plug.Conn
+      import RumblWeb.Router.Helpers
+      import RumblWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/rumbl_web/templates",
+                        namespace: RumblWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -50,26 +37,24 @@ defmodule Rumbl.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Rumbl.Router.Helpers
-      import Rumbl.ErrorHelpers
-      import Rumbl.Gettext
+      import RumblWeb.Router.Helpers
+      import RumblWeb.ErrorHelpers
+      import RumblWeb.Gettext
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
+      import Plug.Conn
+      import Phoenix.Controller
     end
   end
 
   def channel do
     quote do
       use Phoenix.Channel
-
-      alias Rumbl.Repo
-      import Ecto
-      import Ecto.Query
-      import Rumbl.Gettext
+      import RumblWeb.Gettext
     end
   end
 
