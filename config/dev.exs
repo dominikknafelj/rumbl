@@ -19,7 +19,7 @@ use Mix.Config
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-config :rumbl, Rumbl.Endpoint,
+config :rumbl, RumblWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -29,7 +29,7 @@ config :rumbl, Rumbl.Endpoint,
 
 
 # Watch static and templates for browser reloading.
-config :rumbl, Rumbl.Endpoint,
+config :rumbl, RumblWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},

@@ -1,5 +1,5 @@
-defmodule Rumbl.Router do
-  use Rumbl.Web, :router
+defmodule RumblWeb.Router do
+  use RumblWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,14 +7,14 @@ defmodule Rumbl.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Rumbl.Auth, repo: Rumbl.Repo
+    plug RumblWeb.Auth, repo: Rumbl.Repo
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", Rumbl do
+  scope "/", RumblWeb do
     pipe_through :browser # Use the default browser stack
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]

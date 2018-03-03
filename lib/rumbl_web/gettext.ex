@@ -1,4 +1,4 @@
-defmodule Rumbl.Gettext do
+defmodule RumblWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

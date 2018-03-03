@@ -1,4 +1,4 @@
-defmodule Rumbl.UserSocket do
+defmodule RumblWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
