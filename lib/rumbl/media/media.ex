@@ -10,6 +10,7 @@ defmodule Rumbl.Media do
 
   alias Rumbl.Media.Video
   alias Rumbl.Users.User
+  alias Rumbl.Media.Category
 
   @doc """
   Returns the list of videos.
@@ -114,5 +115,21 @@ defmodule Rumbl.Media do
 
   defp user_videos(user) do
     assoc(user, :videos)
+  end
+
+  def load_categories do
+    query =
+      Category
+      |> alphabetical
+      |> names_and_ids
+    Repo.all query
+  end
+
+  def alphabetical(query) do
+    from category in query, order_by: category.name
+  end
+
+  def names_and_ids(query) do
+    from category in query, select: {category.name, category.id}
   end
 end
