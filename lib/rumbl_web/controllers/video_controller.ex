@@ -3,8 +3,6 @@ defmodule RumblWeb.VideoController do
   require IEx
 
   alias Rumbl.Media
-  alias Rumbl.Media.Video
-  alias Rumbl.Media.Category
 
   plug :scrub_params, "video" when action in [:create, :update]
   plug :load_categories when action in [:new, :create, :edit, :update]

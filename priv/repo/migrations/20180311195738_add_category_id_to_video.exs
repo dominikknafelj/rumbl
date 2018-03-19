@@ -3,7 +3,7 @@ defmodule Rumbl.Repo.Migrations.AddCategoryIdToVideo do
 
   def change do
     alter table(:videos) do
-      add :category_id, references(:media_categories)
+      add :category_id, references(:media_categories, on_delete: :nilify_all)
     end
   end
 end
