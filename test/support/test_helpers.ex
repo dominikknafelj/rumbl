@@ -2,10 +2,10 @@ defmodule Rumbl.TestHelpers do
   alias Rumbl.Repo
 
   def insert_user(attrs \\ %{}) do
-    changes = Dict.merge(
+    changes = Map.merge(
       %{
         name: "Some User",
-        username: "user#{Base.encode(:crypto.rand_bytes(8))}",
+        username: "user#{Base.encode16(:crypto.strong_rand_bytes(8))}",
         password: "supergeheim"
       },
       attrs
@@ -16,9 +16,9 @@ defmodule Rumbl.TestHelpers do
     |> Repo.insert!()
   end
 
-  def insert_video(user, attr \\ {}) do
+  def insert_video(user, attrs \\ {}) do
     user
-    |> Ecto.build_assoc(:video, attrs)
+    |> Ecto.build_assoc(:videos, attrs)
     |> Repo.insert!()
   end
 end
